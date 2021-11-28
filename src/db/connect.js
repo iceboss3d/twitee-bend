@@ -3,7 +3,7 @@ import { Sequelize } from "sequelize";
 
 dotenv.config();
 
-const sequelize = new Sequelize(process.env.DATABASE);
+const sequelize = new Sequelize(process.env.DATABASE_URL);
 
 const connect = async () => {
   try {
