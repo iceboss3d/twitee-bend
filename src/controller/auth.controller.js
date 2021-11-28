@@ -2,6 +2,7 @@ import { AuthValidate } from "../validator/index.js";
 import { User } from "../models/index.js";
 import { response } from "../helpers/response.js";
 import { generateToken } from "../utilities/tokenGenerator.js";
+import { sendMail } from "../helpers/mailer.js";
 import bcrypt from 'bcrypt';
 
 
@@ -30,7 +31,12 @@ export const signUp = async (req, res) => {
 
     const { name, email, _id } = user;
 
-    //send email
+    const msg = `
+      <p>Hello ${username},</p>
+      <p>Welcome to Twitee</p>
+    `;
+
+    await sendMail("Welcome to Twitee", msg, user.email);
 
     return response.successWithData(
       res,
